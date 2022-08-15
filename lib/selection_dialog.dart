@@ -139,6 +139,17 @@ class _SelectionDialogState extends State<SelectionDialog> {
   Widget _buildOption(CountryCode e) {
     return Container(
       width: 400,
+      height: 50,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                offset: Offset(0, 2),
+                blurRadius: 1.2)
+          ],
+          color: Theme.of(context).cardColor),
       child: Flex(
         direction: Axis.horizontal,
         children: <Widget>[
@@ -159,13 +170,14 @@ class _SelectionDialogState extends State<SelectionDialog> {
           Expanded(
             flex: 4,
             child: Text(
-              widget.showCountryOnly!
-                  ? e.toCountryStringOnly()
-                  : e.toLongString(),
+              e.toCountryStringOnly(),
               overflow: TextOverflow.fade,
               style: widget.textStyle,
             ),
           ),
+          Text(
+            e.toLongString().split(" ").first,
+          )
         ],
       ),
     );
